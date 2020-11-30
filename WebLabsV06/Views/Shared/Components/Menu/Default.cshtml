@@ -1,24 +1,27 @@
 ﻿@model IEnumerable<MenuItem>
 
-<div class="navbar-nav">
-    @foreach (var item in Model)
-    {
-        @if (item.IsPage)
+    <div class="navbar-nav">
+        @foreach (var item in Model)
         {
-            <a class="nav-item nav-link @item.Active"
-               asp-area="@item.Area"
-               asp-page="@item.Page">
-                @item.Text
-            </a>
-        }
-        else
-        {
-            <a class="nav-item nav-link @item.Active"
-               asp-controller="@item.Controller"
-               asp-action="@item.Action">
-                @item.Text
-            </a>
-        }
-    }
-</div>
+            @if (item.IsPage)
+            {
+                <a class="nav-item nav-link @item.Active"
+                   asp-area="@item.Area"
+                   asp-page="@item.Page">
+                    @item.Text
+                </a>
+            }
+            else
+            {
+                <a class="nav-item nav-link @item.Active"
+                   asp-controller="@item.Controller"
+                   asp-action="@item.Action">
+                    @item.Text
+                </a>
+            }
+
+
+        }      
+      
+    </div>
 

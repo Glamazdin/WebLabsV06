@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace WebLabsV06.DAL.Entities
 {
@@ -17,10 +18,11 @@ namespace WebLabsV06.DAL.Entities
         /// группа блюд (например, супы, напитки и т.д.)
         /// </summary>
         public int DishGroupId { get; set; }
+        [JsonIgnore]
         public DishGroup Group { get; set; }
     }
 public class DishGroup
-    {
+    {        
         public int DishGroupId { get; set; }
         public string GroupName { get; set; }
         /// <summary>

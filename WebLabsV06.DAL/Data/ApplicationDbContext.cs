@@ -14,5 +14,8 @@ namespace WebLabsV06.DAL.Data
         {
 
         }
+
+        public DbSet<Dish> Dishes { get; set; }
+        public DbSet<DishGroup> DishGroups { get; set; }
     }
 }

@@ -14,7 +14,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebLabsV06.Services;
-
+using Microsoft.AspNetCore.Http;
+using WebLabsV06.Models;
+using Microsoft.Extensions.Logging;
+using WebLabsV06.Middleware;
+using WebLabsV06.Extensions;
 
 namespace WebLabsV06
 {
@@ -29,7 +33,7 @@ namespace WebLabsV06
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {           
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -43,6 +47,14 @@ namespace WebLabsV06
 
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDistributedMemoryCache();
+            services.AddSession(opt =>
+            {
+                opt.Cookie.IsEssential = true;
+                opt.Cookie.HttpOnly = true;
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<Cart>(sp => CartService.GetCart(sp));            
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -51,10 +63,13 @@ namespace WebLabsV06
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
                                 ApplicationDbContext context, 
                                 UserManager<ApplicationUser> userManager,
-                                RoleManager<IdentityRole> roleManager
+                                RoleManager<IdentityRole> roleManager,
+                                ILoggerFactory logger
 
             )
         {
+            logger.AddFile("Logs/log-{Date}.txt");
+            //logger.AddFile(Configuration.GetSection("Logging"));
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -66,13 +81,15 @@ namespace WebLabsV06
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseFileLogging();
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
+            
+            app.UseStaticFiles();            
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
             DbInitializer.Seed(context, userManager, roleManager)
                 .GetAwaiter()
                 .GetResult();
@@ -81,7 +98,8 @@ namespace WebLabsV06
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                endpoints.MapRazorPages();              
+
             });
         }
     }

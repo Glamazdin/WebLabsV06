@@ -11,16 +11,15 @@ namespace WebLabsV06.Controllers
 {
     public class ImageController : Controller
     {
-        UserManager<ApplicationUser> _userManager;
-        IWebHostEnvironment _env;
+        UserManager<ApplicationUser> _userManager;        
 
-        public ImageController(UserManager<ApplicationUser> userManager, IWebHostEnvironment env)
+        public ImageController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
-            _env = env;
+           
         }
 
-        public async Task<FileResult> GetAvatar()
+        public async Task<FileResult> GetAvatar([FromServices]IWebHostEnvironment env)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user.AvatarImage != null)
@@ -29,7 +28,7 @@ namespace WebLabsV06.Controllers
             {
                 var avatarPath = "/Images/anonymous.png";
                
-                return File(_env.WebRootFileProvider
+                return File(env.WebRootFileProvider
                     .GetFileInfo(avatarPath)
                     .CreateReadStream(), "image/...");
             }

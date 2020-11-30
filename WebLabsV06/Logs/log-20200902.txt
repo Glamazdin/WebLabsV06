@@ -1,0 +1,6 @@
+2020-09-02T12:43:19.3083496+03:00  [INF] User logged in. (fdce0db4)
+2020-09-02T12:43:19.3507144+03:00  [INF] Request /Identity/Account/Login returns status code 302 (58250cbb)
+2020-09-02T12:43:36.9442464+03:00  [INF] User logged out. (f9c27106)
+2020-09-02T12:43:36.9551796+03:00  [INF] Request /Identity/Account/Logout?returnurl=%2F returns status code 302 (2534312f)
+2020-09-02T12:43:46.2797346+03:00  [INF] User logged in. (fdce0db4)
+2020-09-02T12:43:46.2820478+03:00  [INF] Request /Identity/Account/Login returns status code 302 (58250cbb)

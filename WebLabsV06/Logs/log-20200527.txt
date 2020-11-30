@@ -1,0 +1,7 @@
+2020-05-27T20:45:18.1383872+03:00  [INF] Request /lib/bs-custom-file-input/dist/bs-custom-file%20%20%20%20%20%20%20%20%20%20%20%20-input.js returns status code 404 (43074b60)
+2020-05-27T20:45:18.2830834+03:00  [INF] Request /lib/bs-custom-file-input/dist/bs-custom-file%20%20%20%20%20%20%20%20%20%20%20%20-input.js returns status code 404 (43074b60)
+2020-05-27T20:51:12.0535442+03:00  [INF] Request /lib/bs-custom-file-input/dist/bs-custom-file%20%20%20%20%20%20%20%20%20%20%20%20-input.js returns status code 404 (43074b60)
+2020-05-27T20:53:14.4569910+03:00  [INF] Request /lib/bs-custom-file-input/dist/bs-custom-file%20%20%20%20%20%20%20%20%20%20%20%20-input.js returns status code 404 (43074b60)
+2020-05-27T20:54:50.1590850+03:00  [INF] Request /lib/bs-custom-file-input/dist/bs-custom-file%20%20%20%20%20%20%20%20%20%20%20%20-input.js returns status code 404 (43074b60)
+2020-05-27T20:55:41.2335626+03:00  [INF] Request /lib/bs-custom-file-input/dist/bs-custom-file%20%20%20%20%20%20%20%20%20%20%20%20-input.js returns status code 404 (43074b60)
+2020-05-27T20:57:01.5447606+03:00  [INF] Request /lib/bs-custom-file-input/dist/bs-custom-file%20%20%20%20%20%20%20%20%20%20%20%20-input.js returns status code 404 (43074b60)

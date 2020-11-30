@@ -1,0 +1,45 @@
+﻿@page "/apidemo"
+@inject IHttpClientFactory clientFactory
+@using WebLabsV07.Blazor.Data
+ 
+    <div class="container">
+        <DishesList @bind-Dishes="dishes" SelectedObjectChanged="ShowDetails"></DishesList>
+        <DisDetails @bind-Dish="SelectedDish"></DisDetails>
+    </div>
+
+@code {      
+    [Parameter]
+    public IEnumerable<DishListViewModel> dishes { get; set; }
+    [Parameter]
+    public DishDetailsViewModel SelectedDish { get; set; }
+    //[Parameter]
+    //public int SelectedId { get; set; }
+
+    string apiBaseAddress = "https://localhost:44310/Api/Dishes";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, apiBaseAddress);
+        var client = clientFactory.CreateClient();
+
+        var response = await client.SendAsync(request); // GetAsync(apiBaseAddress);
+        if (response.IsSuccessStatusCode)
+        {
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            dishes = await JsonSerializer.DeserializeAsync
+                <IEnumerable<DishListViewModel>>(responseStream,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive=true });
+        }
+    }
+
+    private async Task ShowDetails(int id)
+    {
+        var client = clientFactory.CreateClient();
+        var response = await client.GetAsync(apiBaseAddress+$"/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            SelectedDish = await JsonSerializer.DeserializeAsync<DishDetailsViewModel>(responseStream);
+        }
+    }
+}

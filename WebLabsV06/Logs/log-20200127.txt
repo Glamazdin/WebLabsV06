@@ -1,0 +1,7 @@
+2020-01-27T17:20:10.9607449+03:00  [INF] Request /Images/6.jpg returns status code 304 (cfd44362)
+2020-01-27T17:20:10.9607448+03:00  [INF] Request /Images/7.jpg returns status code 304 (747a0c20)
+2020-01-27T17:20:23.5498080+03:00  [INF] User logged out. (f9c27106)
+2020-01-27T17:20:23.5519068+03:00  [INF] Request /Identity/Account/Logout?returnurl=%2FAdmin returns status code 302 (6d32dd39)
+2020-01-27T18:42:12.1099443+03:00  [INF] Request /js/site.js?v=8JZp0mpfZ0YDQ-1EV8kuHCcIQ6jsOxPL0SA4eNXtGoA returns status code 304 (3c58fb3e)
+2020-01-27T19:13:06.1575221+03:00  [INF] Request /apidemo returns status code 404 (4fb25289)
+2020-01-27T19:13:28.1465440+03:00  [INF] Request /apidemo/index returns status code 404 (955e83fd)
